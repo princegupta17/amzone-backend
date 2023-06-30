@@ -9,7 +9,7 @@ const stripe = require("stripe")(
   "sk_test_51NMVxfSFEHjZPF4YccFqITikj7e8PLqQJMT3FYhTk1i1ccfKUtvI3QGyHJetApNKb4VN9l0stImNi7GNXQqB7eeG00mjpLCIG6"
 );
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cors());
