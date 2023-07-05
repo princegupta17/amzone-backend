@@ -14,11 +14,15 @@ app.use(express.json());
 app.use(cors());
 
 const connection_url = process.env.CONNECT_URL
+try {
+  await mongoose.connect(connection_url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+  })
+} catch (err){
+  handleError(err);
+}
 
-mongoose.connect(connection_url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
 
 app.get("/", (req, res) => res.status(200).send("hello"));
 
