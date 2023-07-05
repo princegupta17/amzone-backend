@@ -1,21 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const dotenv = require('dotenv').config();
 const Products = require("./Products");
 const bcrypt = require("bcrypt");
 const Users = require("./Users");
 const Orders = require("./Orders");
-const stripe = require("stripe")(
-  "sk_test_51NMVxfSFEHjZPF4YccFqITikj7e8PLqQJMT3FYhTk1i1ccfKUtvI3QGyHJetApNKb4VN9l0stImNi7GNXQqB7eeG00mjpLCIG6"
-);
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(cors());
 
-const connection_url =
-  "mongodb+srv://princegupta17:GlFMURbhuBUVN59M@cluster0.njpn1xt.mongodb.net/?retryWrites=true&w=majority";
+const connection_url = process.env.CONNECT_URL
 
 mongoose.connect(connection_url, {
   useNewUrlParser: true,
