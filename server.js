@@ -25,7 +25,7 @@ async function run() {
     asPromise();
 }
 
-run();
+
 // mongoose.connect(connection_url, {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
@@ -149,5 +149,5 @@ app.post("/orders/get", (req, res) => {
       console.log(err);
     });
 });
-
+run();
 app.listen(port, () => console.log("server is running on port", port));
