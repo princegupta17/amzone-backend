@@ -48,7 +48,7 @@ app.post("/products/add", (req, res) => {
 });
 
 app.get("/products/get", (req, res) => {
-  await mongoose.model('Products').find()
+  await Products.find()
     .then((data) => {
       res.status(200).send(data);
     })
