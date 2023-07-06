@@ -48,7 +48,7 @@ app.post("/products/add", (req, res) => {
 });
 
 app.get("/products/get", (req, res) => {
-  await Products.find()
+  Products.find()
     .then((data) => {
       res.status(200).send(data);
     })
