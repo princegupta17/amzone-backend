@@ -18,11 +18,18 @@ app.use(cors({
 }));
 
 const connection_url = process.env.CONNECT_URL
+async function run() {
+  // Create a new connection and connect to MongoDB...
+  const conn = await mongoose.
+    createConnection(connection_url).
+    asPromise();
+}
 
-mongoose.connect(connection_url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+run();
+// mongoose.connect(connection_url, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
 
 app.get("/", (req, res) => res.status(200).send("hello"));
 
@@ -41,7 +48,7 @@ app.post("/products/add", (req, res) => {
 });
 
 app.get("/products/get", (req, res) => {
-  Products.find()
+  await mongoose.model('Products').find()
     .then((data) => {
       res.status(200).send(data);
     })
