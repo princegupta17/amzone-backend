@@ -11,7 +11,11 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: ["https://amazon-frontend-2z5k.onrender.com"],
+  methods: ["POST", "GET"],
+  credentials: true
+}));
 
 const connection_url = process.env.CONNECT_URL
 
