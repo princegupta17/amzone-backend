@@ -2,10 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require('dotenv').config();
-const Products = require("./Products");
+
 const bcrypt = require("bcrypt");
-const Users = require("./Users");
-const Orders = require("./Orders");
+
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 const app = express();
 const port = process.env.PORT || 3001;
@@ -18,18 +17,22 @@ app.use(cors({
 }));
 
 const connection_url = process.env.CONNECT_URL
-async function run() {
-  // Create a new connection and connect to MongoDB...
-  const conn = await mongoose.
-    createConnection(connection_url).
-    asPromise();
-}
+// async function run() {
+//   // Create a new connection and connect to MongoDB...
+//   const conn = await mongoose.
+//     createConnection(connection_url).
+//     asPromise();
+// }
+mongoose.connect(connection_url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const Users = require("./Users");
+const Orders = require("./Orders");
+const Products = require("./Products");
 
 
-// mongoose.connect(connection_url, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-// });
+
 
 app.get("/", (req, res) => res.status(200).send("hello"));
 
