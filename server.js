@@ -16,7 +16,6 @@ app.use(cors({
   methods: ["POST", "GET"],
   credentials: true
 }));
-
 const connection_url = process.env.CONNECT_URL
 mongoose.connect(connection_url, {
   useNewUrlParser: true,
